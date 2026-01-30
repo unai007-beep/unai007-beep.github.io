@@ -1,180 +1,108 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="6WEjIlw710COKussa3AqPj8fQ8SV4RshdqJOGOHl21I" />
+  <meta charset="utf-8">
   <title>TechAI Solutions</title>
-
-  <!-- Fuente -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    body{
-      margin:0;
-      font-family:Poppins,system-ui,sans-serif;
-      background:#f6f7fb;
-      color:#111827;
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 40px;
     }
-    section{ padding:70px 20px; }
-    h1,h2{ text-align:center; }
-    p{ text-align:center; color:#6b7280; }
-
-    .card{
-      max-width:720px;
-      margin:30px auto 0;
-      background:#fff;
-      padding:30px;
-      border-radius:18px;
-      box-shadow:0 12px 30px rgba(0,0,0,.08);
+    .card {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.08);
     }
-
-    .form{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:10px;
+    input, select, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
     }
-    .col-2{ grid-column:span 2; }
-
-    label{
-      font-weight:600;
-      font-size:13px;
-      color:#374151;
+    button {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
     }
-
-    input,select,textarea{
-      padding:12px;
-      border-radius:12px;
-      border:1px solid #d1d5db;
-      font-family:inherit;
-      font-size:14px;
-      width:100%;
+    button:hover {
+      background: #6d28d9;
     }
-    textarea{ resize:vertical; min-height:120px; }
-
-    button{
-      margin-top:10px;
-      padding:14px;
-      border:none;
-      border-radius:14px;
-      background:#7c3aed;
-      color:#fff;
-      font-weight:700;
-      cursor:pointer;
-      font-size:15px;
-    }
-    button:hover{ background:#6d28d9; }
-
-    #status{
-      margin-top:12px;
-      font-weight:600;
-      text-align:center;
-    }
-
-    @media(max-width:680px){
-      .form{ grid-template-columns:1fr; }
-      .col-2{ grid-column:span 1; }
-    }
+    .ok { color: green; margin-top: 10px; }
+    .err { color: red; margin-top: 10px; }
   </style>
 </head>
 
 <body>
 
-<section>
-  <h1>Contacta con Nosotros</h1>
-  <p>¿Tienes alguna pregunta? Escríbenos y te responderemos.</p>
+<div class="card">
+  <h2>Contacto</h2>
 
-  <div class="card">
-    <form id="contactForm" class="form">
+  <form id="contactForm">
+    <input id="nombre" placeholder="Nombre" required>
+    <input id="email" type="email" placeholder="Email" required>
 
-      <div>
-        <label>Nombre</label>
-        <input name="nombre" required>
-      </div>
+    <select id="servicio" required>
+      <option value="">Selecciona un servicio</option>
+      <option>Desarrollo Web</option>
+      <option>Consultoría IA</option>
+      <option>Reparación</option>
+    </select>
 
-      <div>
-        <label>Email</label>
-        <input name="email" type="email" required>
-      </div>
+    <textarea id="mensaje" placeholder="Mensaje" required></textarea>
 
-      <div class="col-2">
-        <label>Servicio de interés</label>
-        <select name="servicio" required>
-          <option value="">Selecciona un servicio</option>
-          <option>Desarrollo Web</option>
-          <option>Consultoría IA</option>
-          <option>Reparación de Ordenadores</option>
-          <option>Componentes de Ordenador</option>
-        </select>
-      </div>
+    <button type="submit">Enviar mensaje</button>
+  </form>
 
-      <div class="col-2">
-        <label>Mensaje</label>
-        <textarea name="mensaje" required></textarea>
-      </div>
-
-      <div class="col-2">
-        <button type="submit">Enviar mensaje</button>
-        <p id="status"></p>
-      </div>
-
-    </form>
-  </div>
-</section>
+  <div id="status"></div>
+</div>
 
 <script>
-/* ======================
-   CONFIGURACIÓN SUPABASE
-   ====================== */
-const SUPABASE_URL = "https://klqsqbkxwbwaczpxjrxm.supabase.co";
+const SUPABASE_URL = https://klqsqbkxwbwaczpxjxrm.supabase.co;
+const SUPABASE_KEY = sb_publishable_TW2S5wnL-hPDCbTu_14M3w_DDLDRezO;
 
-/* ⬇⬇⬇ PEGA AQUÍ TU publishable key ⬇⬇⬇ */
-const SUPABASE_PUBLISHABLE_KEY = sb_publishable_TW2S5wnL-hPDCbTu_14M3w_DDLDRezO;
-
-/* ======================
-   FORMULARIO
-   ====================== */
-const form = document.getElementById("contactForm");
-const statusEl = document.getElementById("status");
-
-form.addEventListener("submit", async (e) => {
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  statusEl.style.color = "#111827";
-  statusEl.textContent = "Enviando...";
 
-  const data = new FormData(form);
-  const payload = {
-    nombre: data.get("nombre"),
-    email: data.get("email"),
-    servicio: data.get("servicio"),
-    mensaje: data.get("mensaje")
+  const data = {
+    nombre: document.getElementById("nombre").value,
+    email: document.getElementById("email").value,
+    servicio: document.getElementById("servicio").value,
+    mensaje: document.getElementById("mensaje").value
   };
 
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/mensajes`, {
       method: "POST",
       headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
         "Content-Type": "application/json",
-        "apikey": SUPABASE_PUBLISHABLE_KEY,
-        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
         "Prefer": "return=minimal"
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(data)
     });
 
-    if (!res.ok) throw new Error(await res.text());
+    if (!res.ok) throw new Error("Error al enviar");
 
-    statusEl.style.color = "green";
-    statusEl.textContent = "✅ Mensaje enviado correctamente";
-    form.reset();
+    document.getElementById("status").innerHTML =
+      "<p class='ok'>Mensaje enviado correctamente</p>";
+    e.target.reset();
 
   } catch (err) {
+    document.getElementById("status").innerHTML =
+      "<p class='err'>Error al enviar el mensaje</p>";
     console.error(err);
-    statusEl.style.color = "red";
-    statusEl.textContent = "❌ Error al enviar. Revisa la consola (F12)";
   }
 });
 </script>
