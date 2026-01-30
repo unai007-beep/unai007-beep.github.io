@@ -501,11 +501,15 @@
       box-shadow: 0 0 0 4px rgba(124,58,237,.12);
     }
     .col-span-2{ grid-column: span 2; }
-    .contact-card .btn-solid{
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin-top: 10px;
+
+    .status{
+      margin-top: 12px;
+      font-weight: 600;
+      font-size: 13px;
+      color: rgba(17,24,39,.8);
     }
+    .status.ok{ color: #16a34a; }
+    .status.err{ color: #dc2626; }
 
     @media (max-width: 680px){
       .form{ grid-template-columns: 1fr; }
@@ -528,10 +532,8 @@
     }
     .footer-inner small{ color: rgba(255,255,255,.7); }
 
-    /* Divider spacing like screenshots */
-    .spacer-top{
-      padding-top: 56px;
-    }
+    /* Divider spacing */
+    .spacer-top{ padding-top: 56px; }
   </style>
 </head>
 
@@ -585,7 +587,6 @@
       </div>
 
       <div class="grid ai">
-        <!-- ChatGPT -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#22c55e;">
             <i class="fa-solid fa-comment-dots"></i>
@@ -598,7 +599,6 @@
           </a>
         </article>
 
-        <!-- DALL·E -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#8b5cf6;">
             <i class="fa-regular fa-image"></i>
@@ -611,7 +611,6 @@
           </a>
         </article>
 
-        <!-- Midjourney -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#ec4899;">
             <i class="fa-solid fa-palette"></i>
@@ -624,7 +623,6 @@
           </a>
         </article>
 
-        <!-- GitHub Copilot -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#3b82f6;">
             <i class="fa-solid fa-code"></i>
@@ -637,7 +635,6 @@
           </a>
         </article>
 
-        <!-- Stable Diffusion -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#6366f1;">
             <i class="fa-solid fa-pen-nib"></i>
@@ -650,7 +647,6 @@
           </a>
         </article>
 
-        <!-- Claude -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#f97316;">
             <i class="fa-solid fa-robot"></i>
@@ -663,7 +659,6 @@
           </a>
         </article>
 
-        <!-- Gemini -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#ef4444;">
             <i class="fa-solid fa-circle-nodes"></i>
@@ -676,7 +671,6 @@
           </a>
         </article>
 
-        <!-- ElevenLabs -->
         <article class="card ai-card">
           <div class="ai-icon" style="background:#14b8a6;">
             <i class="fa-solid fa-microphone"></i>
@@ -701,7 +695,6 @@
       </div>
 
       <div class="grid components">
-        <!-- RTX 4090 -->
         <article class="card product">
           <div class="img">
             <img alt="RTX 4090"
@@ -721,7 +714,6 @@
           </div>
         </article>
 
-        <!-- Ryzen 9 7950X -->
         <article class="card product">
           <div class="img">
             <img alt="AMD Ryzen 9 7950X"
@@ -741,7 +733,6 @@
           </div>
         </article>
 
-        <!-- RAM Corsair -->
         <article class="card product">
           <div class="img">
             <img alt="Corsair Dominator 64GB DDR5"
@@ -761,7 +752,6 @@
           </div>
         </article>
 
-        <!-- Samsung 990 Pro -->
         <article class="card product">
           <div class="img">
             <img alt="Samsung 990 Pro 2TB"
@@ -781,7 +771,6 @@
           </div>
         </article>
 
-        <!-- ASUS ROG -->
         <article class="card product">
           <div class="img">
             <img alt="ASUS ROG Strix B650-E"
@@ -801,7 +790,6 @@
           </div>
         </article>
 
-        <!-- PSU Corsair -->
         <article class="card product">
           <div class="img">
             <img alt="Corsair RM1000x"
@@ -888,12 +876,12 @@
           <form class="form" id="contactForm">
             <div class="field">
               <label for="nombre">Nombre</label>
-              <input id="nombre" name="nombre" type="text" placeholder="" required />
+              <input id="nombre" name="nombre" type="text" required />
             </div>
 
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="" required />
+              <input id="email" name="email" type="email" required />
             </div>
 
             <div class="field col-span-2">
@@ -910,13 +898,14 @@
 
             <div class="field col-span-2">
               <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" placeholder="" required></textarea>
+              <textarea id="mensaje" name="mensaje" required></textarea>
             </div>
 
             <div class="col-span-2">
-              <button class="btn-solid" type="submit">
+              <button class="btn-solid" id="submitBtn" type="submit">
                 <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
               </button>
+              <p id="status" class="status" aria-live="polite"></p>
             </div>
           </form>
         </div>
@@ -939,6 +928,12 @@
   </footer>
 
   <script>
+    // ====== CONFIGURA ESTO (OBLIGATORIO) ======
+    const SUPABASE_URL = "https://abcd1234.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....";
+
+    // ==========================================
+
     // Menú móvil
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
@@ -950,7 +945,7 @@
     // Año footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Demo: "Visitar" / "Consultar" (para que no te saque de la página)
+    // Demo: "Visitar" / "Consultar"
     function fakeVisit(ev, name){
       ev.preventDefault();
       alert('Demo: botón "Visitar" de ' + name + '.\nAquí puedes poner el enlace real.');
@@ -962,13 +957,53 @@
       return false;
     }
 
-    // Formulario (demo)
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
+    // ====== FORMULARIO REAL → SUPABASE ======
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("status");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      alert('¡Mensaje enviado (demo)!\\nConecta esto a tu backend o EmailJS para enviarlo de verdad.');
-      e.target.reset();
+
+      statusEl.classList.remove("ok","err");
+      statusEl.textContent = "Enviando...";
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.8";
+
+      const fd = new FormData(form);
+      const payload = {
+        nombre: fd.get("nombre"),
+        email: fd.get("email"),
+        servicio: fd.get("servicio"),
+        mensaje: fd.get("mensaje"),
+      };
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/mensajes`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error(await res.text());
+
+        statusEl.classList.add("ok");
+        statusEl.textContent = "✅ Mensaje enviado correctamente";
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        statusEl.classList.add("err");
+        statusEl.textContent = "❌ Error al enviar. Abre la consola (F12) para ver el detalle.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+      }
     });
   </script>
 </body>
 </html>
-
