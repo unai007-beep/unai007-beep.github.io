@@ -6,1004 +6,178 @@
   <meta name="google-site-verification" content="6WEjIlw710COKussa3AqPj8fQ8SV4RshdqJOGOHl21I" />
   <title>TechAI Solutions</title>
 
-  <!-- Fuente similar -->
+  <!-- Fuente -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Iconos -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg: #f6f7fb;
-      --text: #111827;
-      --muted: #6b7280;
-      --card: #ffffff;
-      --border: rgba(17,24,39,.08);
-
-      --primary: #7c3aed;     /* morado */
-      --primary-2: #8b5cf6;   /* morado claro */
-      --blue: #3b82f6;
-      --green: #22c55e;
-
-      --shadow: 0 10px 25px rgba(17,24,39,.08);
-      --shadow-soft: 0 8px 18px rgba(17,24,39,.06);
-      --radius: 18px;
-      --radius-lg: 22px;
-      --container: 1180px;
-    }
-
-    *{ box-sizing: border-box; }
-    html{ scroll-behavior: smooth; }
     body{
       margin:0;
-      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.55;
+      font-family:Poppins,system-ui,sans-serif;
+      background:#f6f7fb;
+      color:#111827;
     }
-    a{ color: inherit; text-decoration: none; }
-    img{ max-width:100%; display:block; }
-
-    /* Layout */
-    .container{
-      width: min(var(--container), calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    /* Navbar */
-    .navbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 16px 0;
-      gap: 18px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
-    .brand .logo{
-      width: 34px;
-      height: 34px;
-      display:grid;
-      place-items:center;
-      border-radius: 10px;
-      background: rgba(124,58,237,.12);
-      color: var(--primary);
-    }
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap: 22px;
-      color: rgba(17,24,39,.78);
-      font-weight: 500;
-      font-size: 14px;
-    }
-    .nav-links a{
-      padding: 10px 10px;
-      border-radius: 12px;
-      transition: .2s ease;
-    }
-    .nav-links a:hover{
-      background: rgba(124,58,237,.08);
-      color: var(--primary);
-    }
-
-    /* Mobile nav */
-    .nav-toggle{
-      display:none;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 12px;
-      cursor:pointer;
-    }
-    .nav-toggle i{ color: rgba(17,24,39,.75); }
-
-    @media (max-width: 860px){
-      .nav-toggle{ display:block; }
-      .nav-links{
-        display:none;
-        position:absolute;
-        left: 24px;
-        right: 24px;
-        top: 68px;
-        background: rgba(255,255,255,.96);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 10px;
-        box-shadow: var(--shadow-soft);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-      }
-      .nav-links.open{ display:flex; }
-      .nav-links a{ padding: 12px 12px; }
-    }
-
-    /* Hero */
-    .hero{
-      background: linear-gradient(90deg, #5c7cfa 0%, #7c3aed 55%, #6d28d9 100%);
-      padding: 78px 0 72px;
-      color: #fff;
-    }
-    .hero .content{
-      text-align:center;
-      max-width: 980px;
-      margin: 0 auto;
-    }
-    .hero h1{
-      margin: 0;
-      font-size: clamp(36px, 4.2vw, 56px);
-      font-weight: 800;
-      letter-spacing: .2px;
-    }
-    .hero p{
-      margin: 14px auto 0;
-      max-width: 760px;
-      color: rgba(255,255,255,.9);
-      font-weight: 400;
-      font-size: 16px;
-    }
-    .hero-actions{
-      margin-top: 24px;
-      display:flex;
-      justify-content:center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    /* Buttons */
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 14px;
-      border: 1px solid transparent;
-      cursor:pointer;
-      transition: transform .12s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn-light{
-      background: rgba(255,255,255,.92);
-      color: var(--primary);
-      border-color: rgba(255,255,255,.65);
-    }
-    .btn-light:hover{ background:#fff; box-shadow: 0 12px 28px rgba(0,0,0,.18); }
-    .btn-primary{
-      background: rgba(124,58,237,.98);
-      color: #fff;
-      box-shadow: 0 12px 24px rgba(124,58,237,.28);
-    }
-    .btn-primary:hover{
-      background: rgba(109,40,217,1);
-      box-shadow: 0 14px 30px rgba(124,58,237,.34);
-    }
-    .btn-solid{
-      width:100%;
-      border-radius: 14px;
-      padding: 14px 16px;
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 14px 28px rgba(124,58,237,.22);
-    }
-    .btn-solid:hover{ background: #6d28d9; box-shadow: 0 18px 36px rgba(124,58,237,.26); }
-    .btn-blue{ background: var(--blue); box-shadow: 0 14px 28px rgba(59,130,246,.22); }
-    .btn-blue:hover{ background:#2563eb; }
-    .btn-green{ background: var(--green); box-shadow: 0 14px 28px rgba(34,197,94,.20); }
-    .btn-green:hover{ background:#16a34a; }
-
-    /* Sections */
-    section{ padding: 70px 0; }
-    .section-head{
-      text-align:center;
-      margin-bottom: 34px;
-    }
-    .section-head .kicker{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: clamp(22px, 2.3vw, 34px);
-      margin: 0;
-    }
-    .section-head .kicker i{
-      color: var(--primary);
-      font-size: 24px;
-    }
-    .section-head p{
-      margin: 10px auto 0;
-      max-width: 640px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* Cards grid */
-    .grid{
-      display:grid;
-      gap: 22px;
-    }
-    .grid.ai{
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .grid.components{
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-    }
-    .grid.services{
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-    }
-
-    @media (max-width: 1060px){
-      .grid.ai{ grid-template-columns: repeat(2, 1fr); }
-      .grid.components{ grid-template-columns: repeat(2, 1fr); }
-      .grid.services{ grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px){
-      .grid.ai,
-      .grid.components,
-      .grid.services{
-        grid-template-columns: 1fr;
-      }
-    }
+    section{ padding:70px 20px; }
+    h1,h2{ text-align:center; }
+    p{ text-align:center; color:#6b7280; }
 
     .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      overflow:hidden;
-    }
-    .card.pad{
-      padding: 22px;
-    }
-    .card:hover{
-      box-shadow: var(--shadow);
-      transform: translateY(-1px);
-      transition: .18s ease;
+      max-width:720px;
+      margin:30px auto 0;
+      background:#fff;
+      padding:30px;
+      border-radius:18px;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
     }
 
-    /* AI cards */
-    .ai-card{
-      padding: 22px;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 260px;
-    }
-    .ai-icon{
-      width: 56px; height: 56px;
-      border-radius: 999px;
-      display:grid;
-      place-items:center;
-      color: #fff;
-      font-size: 22px;
-      margin: 0 auto 2px;
-    }
-    .ai-title{
-      text-align:center;
-      font-weight: 700;
-      margin: 4px 0 0;
-    }
-    .tag{
-      align-self:center;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(124,58,237,.10);
-      color: var(--primary);
-      border: 1px solid rgba(124,58,237,.14);
-      font-weight: 600;
-    }
-    .ai-desc{
-      text-align:center;
-      color: var(--muted);
-      font-size: 13px;
-      margin: 0;
-      padding: 0 2px;
-      min-height: 54px;
-    }
-    .ai-card .btn-solid{
-      margin-top: auto;
-      display:flex;
-      gap: 10px;
-      background: var(--primary);
-      border-radius: 14px;
-      padding: 12px 14px;
-    }
-    .btn-linkout i{ font-size: 14px; }
-
-    /* Components cards */
-    .product{
-      overflow:hidden;
-      display:flex;
-      flex-direction: column;
-    }
-    .product .img{
-      height: 210px;
-      overflow:hidden;
-    }
-    .product .img img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.02);
-    }
-    .product .body{
-      padding: 18px 18px 16px;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .pill{
-      width: fit-content;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(59,130,246,.12);
-      color: rgba(37,99,235,1);
-      border: 1px solid rgba(59,130,246,.14);
-      font-weight: 600;
-    }
-    .product h3{
-      margin: 0;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: .1px;
-    }
-    .product p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 12.8px;
-    }
-    .price-row{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 2px;
-    }
-    .price{
-      color: var(--primary);
-      font-weight: 800;
-      font-size: 22px;
-    }
-    .stock{
-      display:flex;
-      align-items:center;
-      gap: 8px;
-      color: rgba(17,24,39,.65);
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .stock i{ color: rgba(17,24,39,.55); }
-    .product .btn-solid{
-      margin-top: 10px;
-      border-radius: 12px;
-      display:flex;
-      gap: 10px;
-    }
-
-    /* Services */
-    .service{
-      padding: 26px 24px;
-      border-radius: var(--radius-lg);
-    }
-    .service .icon{
-      width: 56px;
-      height: 56px;
-      border-radius: 999px;
-      display:grid;
-      place-items:center;
-      color: #fff;
-      font-size: 20px;
-      margin: 0 auto 14px;
-    }
-    .service h3{
-      text-align:center;
-      margin: 0;
-      font-size: 20px;
-      font-weight: 800;
-    }
-    .service ul{
-      margin: 16px 0 0;
-      padding: 0;
-      list-style:none;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      color: rgba(17,24,39,.72);
-      font-size: 13px;
-      font-weight: 500;
-    }
-    .service li{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-    }
-    .service li i{
-      color: #22c55e;
-      font-size: 14px;
-    }
-    .service .btn-solid{
-      margin-top: 20px;
-      border-radius: 14px;
-    }
-    .service.blue{
-      background: linear-gradient(180deg, rgba(59,130,246,.12) 0%, rgba(255,255,255,1) 55%);
-      border: 1px solid rgba(59,130,246,.14);
-    }
-    .service.purple{
-      background: linear-gradient(180deg, rgba(124,58,237,.10) 0%, rgba(255,255,255,1) 55%);
-      border: 1px solid rgba(124,58,237,.14);
-    }
-    .service.green{
-      background: linear-gradient(180deg, rgba(34,197,94,.12) 0%, rgba(255,255,255,1) 55%);
-      border: 1px solid rgba(34,197,94,.14);
-    }
-    .service.blue .icon{ background: var(--blue); }
-    .service.purple .icon{ background: var(--primary); }
-    .service.green .icon{ background: var(--green); }
-
-    /* Contact */
-    .contact-wrap{
-      display:flex;
-      justify-content:center;
-    }
-    .contact-card{
-      width: min(720px, 100%);
-      padding: 26px;
-    }
     .form{
-      margin-top: 16px;
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:10px;
     }
-    .field{ display:flex; flex-direction:column; gap: 8px; }
-    .field label{
-      font-size: 12px;
-      color: rgba(17,24,39,.70);
-      font-weight: 600;
-    }
-    input, select, textarea{
-      font-family: inherit;
-      padding: 12px 12px;
-      border: 1px solid rgba(17,24,39,.14);
-      border-radius: 12px;
-      outline: none;
-      background: #fff;
-      transition: border-color .15s ease, box-shadow .15s ease;
-    }
-    textarea{ min-height: 140px; resize: vertical; }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(124,58,237,.45);
-      box-shadow: 0 0 0 4px rgba(124,58,237,.12);
-    }
-    .col-span-2{ grid-column: span 2; }
+    .col-2{ grid-column:span 2; }
 
-    .status{
-      margin-top: 12px;
-      font-weight: 600;
-      font-size: 13px;
-      color: rgba(17,24,39,.8);
-    }
-    .status.ok{ color: #16a34a; }
-    .status.err{ color: #dc2626; }
-
-    @media (max-width: 680px){
-      .form{ grid-template-columns: 1fr; }
-      .col-span-2{ grid-column: span 1; }
+    label{
+      font-weight:600;
+      font-size:13px;
+      color:#374151;
     }
 
-    /* Footer */
-    footer{
-      padding: 28px 0;
-      background: #0f172a;
-      color: rgba(255,255,255,.85);
-      margin-top: 30px;
+    input,select,textarea{
+      padding:12px;
+      border-radius:12px;
+      border:1px solid #d1d5db;
+      font-family:inherit;
+      font-size:14px;
+      width:100%;
     }
-    .footer-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .footer-inner small{ color: rgba(255,255,255,.7); }
+    textarea{ resize:vertical; min-height:120px; }
 
-    /* Divider spacing */
-    .spacer-top{ padding-top: 56px; }
+    button{
+      margin-top:10px;
+      padding:14px;
+      border:none;
+      border-radius:14px;
+      background:#7c3aed;
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      font-size:15px;
+    }
+    button:hover{ background:#6d28d9; }
+
+    #status{
+      margin-top:12px;
+      font-weight:600;
+      text-align:center;
+    }
+
+    @media(max-width:680px){
+      .form{ grid-template-columns:1fr; }
+      .col-2{ grid-column:span 1; }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container">
-      <div class="nav-inner">
-        <a class="brand" href="#inicio" aria-label="TechAI Solutions">
-          <span class="logo"><i class="fa-solid fa-robot"></i></span>
-          <span>TechAI Solutions</span>
-        </a>
+<section>
+  <h1>Contacta con Nosotros</h1>
+  <p>¿Tienes alguna pregunta? Escríbenos y te responderemos.</p>
 
-        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
-          <i class="fa-solid fa-bars"></i>
-        </button>
+  <div class="card">
+    <form id="contactForm" class="form">
 
-        <nav class="nav-links" id="navLinks">
-          <a href="#inicio">Inicio</a>
-          <a href="#catalogo">Catálogo IA</a>
-          <a href="#componentes">Componentes</a>
-          <a href="#servicios">Servicios</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="container">
-      <div class="content">
-        <h1>Bienvenido a TechAI Solutions</h1>
-        <p>Tu centro especializado en Inteligencia Artificial, componentes de ordenador y desarrollo web</p>
-
-        <div class="hero-actions">
-          <a class="btn btn-light" href="#catalogo">Explorar IAs</a>
-          <a class="btn btn-primary" href="#componentes">Ver Componentes</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATÁLOGO IA -->
-  <section id="catalogo">
-    <div class="container spacer-top">
-      <div class="section-head">
-        <h2 class="kicker"><i class="fa-solid fa-brain"></i> Catálogo de Inteligencias Artificiales</h2>
-        <p>Descubre las mejores herramientas de IA y sus utilidades</p>
+      <div>
+        <label>Nombre</label>
+        <input name="nombre" required>
       </div>
 
-      <div class="grid ai">
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#22c55e;">
-            <i class="fa-solid fa-comment-dots"></i>
-          </div>
-          <h3 class="ai-title">ChatGPT</h3>
-          <span class="tag">Conversacional</span>
-          <p class="ai-desc">Asistente conversacional avanzado para generar texto, responder preguntas y ayudar en múltiples tareas.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'ChatGPT');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#8b5cf6;">
-            <i class="fa-regular fa-image"></i>
-          </div>
-          <h3 class="ai-title">DALL-E</h3>
-          <span class="tag">Generación de Imágenes</span>
-          <p class="ai-desc">Crea imágenes realistas y artísticas a partir de descripciones de texto.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'DALL-E');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#ec4899;">
-            <i class="fa-solid fa-palette"></i>
-          </div>
-          <h3 class="ai-title">Midjourney</h3>
-          <span class="tag">Generación de Imágenes</span>
-          <p class="ai-desc">Generador de imágenes artísticas con estilo único y alta calidad.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'Midjourney');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#3b82f6;">
-            <i class="fa-solid fa-code"></i>
-          </div>
-          <h3 class="ai-title">GitHub Copilot</h3>
-          <span class="tag">Programación</span>
-          <p class="ai-desc">Asistente de programación que sugiere código en tiempo real.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'GitHub Copilot');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#6366f1;">
-            <i class="fa-solid fa-pen-nib"></i>
-          </div>
-          <h3 class="ai-title">Stable Diffusion</h3>
-          <span class="tag">Generación de Imágenes</span>
-          <p class="ai-desc">Modelo de IA open source para generación de imágenes de alta calidad.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'Stable Diffusion');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#f97316;">
-            <i class="fa-solid fa-robot"></i>
-          </div>
-          <h3 class="ai-title">Claude</h3>
-          <span class="tag">Conversacional</span>
-          <p class="ai-desc">Asistente de IA enfocado en conversaciones seguras y útiles.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'Claude');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#ef4444;">
-            <i class="fa-solid fa-circle-nodes"></i>
-          </div>
-          <h3 class="ai-title">Gemini</h3>
-          <span class="tag">Conversacional</span>
-          <p class="ai-desc">IA multimodal de Google para texto, imágenes y más.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'Gemini');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-
-        <article class="card ai-card">
-          <div class="ai-icon" style="background:#14b8a6;">
-            <i class="fa-solid fa-microphone"></i>
-          </div>
-          <h3 class="ai-title">ElevenLabs</h3>
-          <span class="tag">Audio y Voz</span>
-          <p class="ai-desc">Generación de voz realista y clonación de voces con IA.</p>
-          <a class="btn-solid btn-linkout" href="#" onclick="return fakeVisit(event,'ElevenLabs');">
-            <i class="fa-solid fa-up-right-from-square"></i> Visitar
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPONENTES -->
-  <section id="componentes">
-    <div class="container spacer-top">
-      <div class="section-head">
-        <h2 class="kicker"><i class="fa-solid fa-microchip"></i> Componentes de Ordenador</h2>
-        <p>Compra y venta de componentes de última generación</p>
+      <div>
+        <label>Email</label>
+        <input name="email" type="email" required>
       </div>
 
-      <div class="grid components">
-        <article class="card product">
-          <div class="img">
-            <img alt="RTX 4090"
-                 src="https://images.unsplash.com/photo-1587202372775-e8f7f7f8a1ae?auto=format&fit=crop&w=1400&q=80">
-          </div>
-          <div class="body">
-            <span class="pill">Tarjetas Gráficas</span>
-            <h3>RTX 4090</h3>
-            <p>La tarjeta gráfica más potente de NVIDIA para gaming y IA.</p>
-            <div class="price-row">
-              <div class="price">1899€</div>
-              <div class="stock"><i class="fa-solid fa-box"></i> Stock: 5</div>
-            </div>
-            <a class="btn-solid" href="#" onclick="return fakeBuy(event,'RTX 4090');">
-              <i class="fa-solid fa-cart-shopping"></i> Consultar Disponibilidad
-            </a>
-          </div>
-        </article>
-
-        <article class="card product">
-          <div class="img">
-            <img alt="AMD Ryzen 9 7950X"
-                 src="https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?auto=format&fit=crop&w=1400&q=80">
-          </div>
-          <div class="body">
-            <span class="pill">Procesadores</span>
-            <h3>AMD Ryzen 9 7950X</h3>
-            <p>Procesador de alto rendimiento con 16 núcleos y 32 hilos.</p>
-            <div class="price-row">
-              <div class="price">649€</div>
-              <div class="stock"><i class="fa-solid fa-box"></i> Stock: 8</div>
-            </div>
-            <a class="btn-solid" href="#" onclick="return fakeBuy(event,'AMD Ryzen 9 7950X');">
-              <i class="fa-solid fa-cart-shopping"></i> Consultar Disponibilidad
-            </a>
-          </div>
-        </article>
-
-        <article class="card product">
-          <div class="img">
-            <img alt="Corsair Dominator 64GB DDR5"
-                 src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=1400&q=80">
-          </div>
-          <div class="body">
-            <span class="pill">Memoria RAM</span>
-            <h3>Corsair Dominator 64GB DDR5</h3>
-            <p>Memoria RAM de alta velocidad para máximo rendimiento.</p>
-            <div class="price-row">
-              <div class="price">299€</div>
-              <div class="stock"><i class="fa-solid fa-box"></i> Stock: 12</div>
-            </div>
-            <a class="btn-solid" href="#" onclick="return fakeBuy(event,'Corsair Dominator 64GB DDR5');">
-              <i class="fa-solid fa-cart-shopping"></i> Consultar Disponibilidad
-            </a>
-          </div>
-        </article>
-
-        <article class="card product">
-          <div class="img">
-            <img alt="Samsung 990 Pro 2TB"
-                 src="https://images.unsplash.com/photo-1619453397790-77643b658b5a?auto=format&fit=crop&w=1400&q=80">
-          </div>
-          <div class="body">
-            <span class="pill">Almacenamiento</span>
-            <h3>Samsung 990 Pro 2TB</h3>
-            <p>SSD NVMe ultrarrápido con 2TB de capacidad.</p>
-            <div class="price-row">
-              <div class="price">219€</div>
-              <div class="stock"><i class="fa-solid fa-box"></i> Stock: 7</div>
-            </div>
-            <a class="btn-solid" href="#" onclick="return fakeBuy(event,'Samsung 990 Pro 2TB');">
-              <i class="fa-solid fa-cart-shopping"></i> Consultar Disponibilidad
-            </a>
-          </div>
-        </article>
-
-        <article class="card product">
-          <div class="img">
-            <img alt="ASUS ROG Strix B650-E"
-                 src="https://images.unsplash.com/photo-1616587226157-6f9b9c0d2e6b?auto=format&fit=crop&w=1400&q=80">
-          </div>
-          <div class="body">
-            <span class="pill">Placas Base</span>
-            <h3>ASUS ROG Strix B650-E</h3>
-            <p>Placa base de gama alta para procesadores AMD.</p>
-            <div class="price-row">
-              <div class="price">279€</div>
-              <div class="stock"><i class="fa-solid fa-box"></i> Stock: 4</div>
-            </div>
-            <a class="btn-solid" href="#" onclick="return fakeBuy(event,'ASUS ROG Strix B650-E');">
-              <i class="fa-solid fa-cart-shopping"></i> Consultar Disponibilidad
-            </a>
-          </div>
-        </article>
-
-        <article class="card product">
-          <div class="img">
-            <img alt="Corsair RM1000x"
-                 src="https://images.unsplash.com/photo-1618401479427-c8ef9465fbe7?auto=format&fit=crop&w=1400&q=80">
-          </div>
-          <div class="body">
-            <span class="pill">Fuentes de Alimentación</span>
-            <h3>Corsair RM1000x</h3>
-            <p>Fuente modular de 1000W con certificación 80+ Gold.</p>
-            <div class="price-row">
-              <div class="price">189€</div>
-              <div class="stock"><i class="fa-solid fa-box"></i> Stock: 10</div>
-            </div>
-            <a class="btn-solid" href="#" onclick="return fakeBuy(event,'Corsair RM1000x');">
-              <i class="fa-solid fa-cart-shopping"></i> Consultar Disponibilidad
-            </a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICIOS -->
-  <section id="servicios">
-    <div class="container spacer-top">
-      <div class="section-head">
-        <h2 class="kicker"><i class="fa-solid fa-screwdriver-wrench"></i> Nuestros Servicios</h2>
-        <p>Soluciones profesionales para empresas y particulares</p>
+      <div class="col-2">
+        <label>Servicio de interés</label>
+        <select name="servicio" required>
+          <option value="">Selecciona un servicio</option>
+          <option>Desarrollo Web</option>
+          <option>Consultoría IA</option>
+          <option>Reparación de Ordenadores</option>
+          <option>Componentes de Ordenador</option>
+        </select>
       </div>
 
-      <div class="grid services">
-        <article class="card service blue">
-          <div class="icon"><i class="fa-solid fa-wrench"></i></div>
-          <h3>Reparación de Ordenadores</h3>
-          <ul>
-            <li><i class="fa-solid fa-check"></i> Diagnóstico completo</li>
-            <li><i class="fa-solid fa-check"></i> Reparación de hardware</li>
-            <li><i class="fa-solid fa-check"></i> Actualización de componentes</li>
-            <li><i class="fa-solid fa-check"></i> Limpieza y mantenimiento</li>
-            <li><i class="fa-solid fa-check"></i> Recuperación de datos</li>
-          </ul>
-          <a class="btn-solid btn-blue" href="#contacto">Solicitar Presupuesto</a>
-        </article>
-
-        <article class="card service purple">
-          <div class="icon"><i class="fa-solid fa-globe"></i></div>
-          <h3>Desarrollo Web</h3>
-          <ul>
-            <li><i class="fa-solid fa-check"></i> Páginas web modernas</li>
-            <li><i class="fa-solid fa-check"></i> Tiendas online</li>
-            <li><i class="fa-solid fa-check"></i> Aplicaciones web</li>
-            <li><i class="fa-solid fa-check"></i> Diseño responsive</li>
-            <li><i class="fa-solid fa-check"></i> SEO optimizado</li>
-          </ul>
-          <a class="btn-solid" href="#contacto">Crear mi Web</a>
-        </article>
-
-        <article class="card service green">
-          <div class="icon"><i class="fa-solid fa-briefcase"></i></div>
-          <h3>Asesoría Empresarial</h3>
-          <ul>
-            <li><i class="fa-solid fa-check"></i> Transformación digital</li>
-            <li><i class="fa-solid fa-check"></i> Implementación de IA</li>
-            <li><i class="fa-solid fa-check"></i> Infraestructura IT</li>
-            <li><i class="fa-solid fa-check"></i> Estrategia tecnológica</li>
-            <li><i class="fa-solid fa-check"></i> Consultoría personalizada</li>
-          </ul>
-          <a class="btn-solid btn-green" href="#contacto">Agendar Consulta</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <div class="container spacer-top">
-      <div class="section-head">
-        <h2 class="kicker"><i class="fa-regular fa-envelope"></i> Contacta con Nosotros</h2>
-        <p>¿Tienes alguna pregunta? Estamos aquí para ayudarte</p>
+      <div class="col-2">
+        <label>Mensaje</label>
+        <textarea name="mensaje" required></textarea>
       </div>
 
-      <div class="contact-wrap">
-        <div class="card contact-card">
-          <form class="form" id="contactForm">
-            <div class="field">
-              <label for="nombre">Nombre</label>
-              <input id="nombre" name="nombre" type="text" required />
-            </div>
-
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-
-            <div class="field col-span-2">
-              <label for="servicio">Servicio de interés</label>
-              <select id="servicio" name="servicio" required>
-                <option value="" selected>Selecciona un servicio</option>
-                <option>Reparación de Ordenadores</option>
-                <option>Desarrollo Web</option>
-                <option>Asesoría Empresarial</option>
-                <option>Componentes de Ordenador</option>
-                <option>Consultoría de IA</option>
-              </select>
-            </div>
-
-            <div class="field col-span-2">
-              <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" required></textarea>
-            </div>
-
-            <div class="col-span-2">
-              <button class="btn-solid" id="submitBtn" type="submit">
-                <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
-              </button>
-              <p id="status" class="status" aria-live="polite"></p>
-            </div>
-          </form>
-        </div>
+      <div class="col-2">
+        <button type="submit">Enviar mensaje</button>
+        <p id="status"></p>
       </div>
-    </div>
-  </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="brand" style="color:#fff;">
-          <span class="logo" style="background: rgba(124,58,237,.18); color:#fff;">
-            <i class="fa-solid fa-robot"></i>
-          </span>
-          <span>TechAI Solutions</span>
-        </div>
-        <small>© <span id="year"></span> TechAI Solutions. Todos los derechos reservados.</small>
-      </div>
-    </div>
-  </footer>
+    </form>
+  </div>
+</section>
 
-  <script>
-    // ====== CONFIGURA ESTO (OBLIGATORIO) ======
-    const SUPABASE_URL = "https://abcd1234.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....";
+<script>
+/* ======================
+   CONFIGURACIÓN SUPABASE
+   ====================== */
+const SUPABASE_URL = "https://klqsqbkxwbwaczpxjrxm.supabase.co";
 
-    // ==========================================
+/* ⬇⬇⬇ PEGA AQUÍ TU publishable key ⬇⬇⬇ */
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_TW2S5wnL-hPDCbTu_14M3w_DDLDRezO";
 
-    // Menú móvil
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    navToggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks?.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') navLinks.classList.remove('open');
+/* ======================
+   FORMULARIO
+   ====================== */
+const form = document.getElementById("contactForm");
+const statusEl = document.getElementById("status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusEl.style.color = "#111827";
+  statusEl.textContent = "Enviando...";
+
+  const data = new FormData(form);
+  const payload = {
+    nombre: data.get("nombre"),
+    email: data.get("email"),
+    servicio: data.get("servicio"),
+    mensaje: data.get("mensaje")
+  };
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/mensajes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_PUBLISHABLE_KEY,
+        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
     });
 
-    // Año footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+    if (!res.ok) throw new Error(await res.text());
 
-    // Demo: "Visitar" / "Consultar"
-    function fakeVisit(ev, name){
-      ev.preventDefault();
-      alert('Demo: botón "Visitar" de ' + name + '.\nAquí puedes poner el enlace real.');
-      return false;
-    }
-    function fakeBuy(ev, product){
-      ev.preventDefault();
-      alert('Demo: consultar disponibilidad de ' + product + '.\nAquí puedes abrir WhatsApp, un modal o un formulario.');
-      return false;
-    }
+    statusEl.style.color = "green";
+    statusEl.textContent = "✅ Mensaje enviado correctamente";
+    form.reset();
 
-    // ====== FORMULARIO REAL → SUPABASE ======
-    const form = document.getElementById("contactForm");
-    const statusEl = document.getElementById("status");
-    const submitBtn = document.getElementById("submitBtn");
+  } catch (err) {
+    console.error(err);
+    statusEl.style.color = "red";
+    statusEl.textContent = "❌ Error al enviar. Revisa la consola (F12)";
+  }
+});
+</script>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      statusEl.classList.remove("ok","err");
-      statusEl.textContent = "Enviando...";
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = "0.8";
-
-      const fd = new FormData(form);
-      const payload = {
-        nombre: fd.get("nombre"),
-        email: fd.get("email"),
-        servicio: fd.get("servicio"),
-        mensaje: fd.get("mensaje"),
-      };
-
-      try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/mensajes`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-            "Prefer": "return=minimal"
-          },
-          body: JSON.stringify(payload),
-        });
-
-        if (!res.ok) throw new Error(await res.text());
-
-        statusEl.classList.add("ok");
-        statusEl.textContent = "✅ Mensaje enviado correctamente";
-        form.reset();
-      } catch (err) {
-        console.error(err);
-        statusEl.classList.add("err");
-        statusEl.textContent = "❌ Error al enviar. Abre la consola (F12) para ver el detalle.";
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = "1";
-      }
-    });
-  </script>
 </body>
 </html>
